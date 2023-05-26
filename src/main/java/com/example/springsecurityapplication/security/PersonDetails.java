@@ -9,17 +9,18 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class PersonDetails implements UserDetails {
-
     private final Person person;
 
     public PersonDetails(Person person) {
         this.person = person;
     }
 
-    public Person getPerson(){
+    //Получение пользователя
+    public Person getPerson() {
         return this.person;
     }
 
+    // Получаем роль пользователя
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));
@@ -35,25 +36,22 @@ public class PersonDetails implements UserDetails {
         return this.person.getLogin();
     }
 
-    // Аккаунт действителен
+    //Аккаунт действителен?
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
-    // Аккаунт не заблокирован
+    //Аккаунт заблокирован?
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
-    // Пароль является действительным
+    //Пароль действителен (срок действия не истёк)?
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
-    // Аккаунт активен
+    //Аккаунт активен?
     @Override
     public boolean isEnabled() {
         return true;

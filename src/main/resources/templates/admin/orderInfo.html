@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Информация о заказе</title>
+</head>
+<body>
+<form method="POST" th:action="@{/logout}">
+  <button type="submit">Выйти из личного кабинета</button>
+</form>
+<br>
+<a href="/admin">Назад в личный кабинет</a>
+<br>
+<a href="/admin/orders">Назад к списку заказов</a>
+<hr>
+<br>
+<h3>Информация о заказе: </h3>
+<form th:method="post" th:action="@{/admin/order/{id}(id=${order.id})}" th:object="${order}">
+  <p th:text="'Номер заказа: ' + ${order.getOnumber()}"></p>
+  <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+  <p th:text="'Состав заказа: ' + ${order.getProduct().getTitle()}"></p>
+  <p th:text="'Стоимость: ' + ${order.getPrice()}"></p>
+  <p th:text="'Логин покупателя: ' + ${order.getPerson().getLogin()}"></p>
+  <p th:text="'ID покупателя: ' + ${order.getPerson().getId()}"></p>
+  <p th:text="'Статус заказа: ' + ${order.getStatus()}"></p>
+  <label for="status">Изменить статус заказа: </label>
+  <select name="status" id="status">
+    <option th:each="orderStatus: ${status}" th:text="${orderStatus}" th:value="${orderStatus}" th:selected="${order.getStatus().equals(orderStatus)}"></option>
+  </select>
+  <input type="submit" value="Изменить статус">
+  <br>
+  <br>
+</form>
+<!--<form method="post" th:action="@{/admin/order/{id}/delete}">-->
+<!--  <input type="hidden" name="orderId" th:value="${order.id}">-->
+<!--  <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить заказ?')">Удалить заказ</button>-->
+<!--</form>-->
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Личный кабинет администратора</title>
+</head>
+<body>
+<h3>Личный кабинет администратора</h3>
+<hr>
+<form method="POST" th:action="@{/logout}">
+  <button type="submit">Выйти из личного кабинета администратора</button>
+</form>
+<hr>
+<a href="admin/product">Просмотр, добавление и редактирование товаров</a>
+<br>
+<a href="admin/orders">Просмотр заказов</a>
+<br>
+<a href="admin/users">Посмотреть информацию о пользователях</a>
+<hr>
+
+</body>
+</html>

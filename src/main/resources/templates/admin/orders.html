@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Список всех заказов</title>
+</head>
+<body>
+<form method="POST" th:action="@{/logout}">
+  <button type="submit">Выйти из личного кабинета администратора</button>
+</form>
+<br>
+<a href="/admin">Назад в личный кабинет администратора</a>
+<hr>
+<br>
+
+<h3>Поиск заказов</h3>
+<form th:method="POST" th:action="@{/admin/order/search}">
+  <label for="search">Поиск по номеру заказа</label>
+  <input type="text" id="search" name="search" th:value="${value_search}" style="width: 200px;" maxlength="4">
+  <input type="submit" value="Искать">
+  <br>
+</form>
+<hr>
+<h3>Результат поиска:</h3>
+<div th:each="order: ${search_order}">
+  <a th:href="@{/admin/order/{id}(id=${order.getId()})}" th:text="${order.getOnumber()}"></a>
+  <hr>
+</div>
+<hr>
+<br>
+<h3>Список всех заказов</h3>
+<br>
+<div th:each="order : ${orders}">
+  <a th:href="@{/admin/order/{id}(id=${order.getId()})}" th:text="'Номер заказа: ' + ${order.getOnumber()}"></a>
+  <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+  <p th:text="'Состав заказа: ' + ${order.getProduct().getTitle()}"></p>
+  <p th:text="'Статус заказа: ' + ${order.getStatus()}"></p>
+  <hr>
+  <br>
+</div>
+</body>
+</html>

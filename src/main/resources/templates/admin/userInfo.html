@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Информация о пользователях</title>
+</head>
+<body>
+<form method="POST" th:action="@{/logout}">
+  <button type="submit">Выйти из личного кабинета администратора</button>
+</form>
+<br>
+<a href="/admin">Назад в личный кабинет</a>
+<br>
+<a href="/admin/users">Назад к списку пользователей</a>
+<hr>
+<br>
+<h3>Информация о пользователе: </h3>
+<p th:text="'Логин: ' + ${user.getLogin()}"></p>
+<p th:text="'ID пользователя: ' + ${user.getId()}"></p>
+<p th:text="'Роль пользователя: ' + ${user.getRole()}"></p>
+<div>
+  <form th:method="post" th:action="@{/admin/user/{id}(id=${user.getId()})}" th:object="${user}">
+    <label for="role">Изменить роль пользователя: </label>
+    <select name="role" th:field="*{role}" id="role">
+      <option th:text="${role[0]}" th:value="${role[0]}"></option>
+      <option th:text="${role[1]}" th:value="${role[1]}"></option>
+      <option th:text="${role[2]}" th:value="${role[2]}"></option>
+    </select>
+    <input type="submit" value="Изменить">
+  </form>
+</div>
+</body>
+</html>

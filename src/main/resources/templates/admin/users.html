@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Пользователи</title>
+</head>
+<body>
+<form method="POST" th:action="@{/logout}">
+  <button type="submit">Выйти из личного кабинета администратора</button>
+</form>
+<br>
+<a href="/admin">Назад в личный кабинет</a>
+<hr>
+<br>
+<h3>Список всех пользователей</h3>
+<br>
+<div th:each="user : ${users}">
+  Логин пользователя: <a th:href="@{/admin/user/{id}(id=${user.getId()})}" th:text="${user.getLogin()}"></a>
+  <p th:text="'Роль пользователя: ' + ${user.getRole}"></p>
+  <hr>
+  <br>
+</div>
+</body>
+</html>

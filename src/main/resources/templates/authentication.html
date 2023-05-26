@@ -9,17 +9,17 @@
 <h3>Вход</h3>
 <form method="post" action="/process_login">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-  <label for="username">Введите логин: </label>
-  <input type="text" placeholder="Введите логин" name="username" id="username">
-  <br>
-  <label for="password">Введите пароль: </label>
-  <input type="password" placeholder="Введите пароль" name="password" id="password">
-  <br>
-  <input type="submit" value="Войти">
+    <label for="username"></label>
+    <input type="text" placeholder="Введите логин" name="username" id="username">
+    <br>
+    <label for="password"></label>
+    <input type="password" placeholder="Введите пароль" name="password" id="password">
+    <br>
+    <input type="submit" value="Войти">
 </form>
 <div th:if="${param.error}" style="color: red">
-  Неправильный логин или пароль
+    Неправильный логин или пароль
 </div>
-<a href="/registration">Регистрация</a>
+<a href="/registration">Регистрация нового пользователя</a>
 </body>
 </html>
