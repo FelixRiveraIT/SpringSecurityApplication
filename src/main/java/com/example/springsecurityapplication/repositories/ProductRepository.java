@@ -15,23 +15,54 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByTitleContainingIgnoreCase(String name);
 
     // Поиск по наименованию и фильтрация по диапазону цены
-    @Query(value = "select * from product where ((lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') OR (lower(title) LIKE '%?1')) and (price >= ?2 and price <= ?3)", nativeQuery = true)
+    @Query(value = "select * from product where (lower(title) LIKE CONCAT('%', ?1, '%')) and (price >= ?2 and price <= ?3)", nativeQuery = true)
     List<Product> findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(String title, float ot, float Do);
 
-    // Поиск по наименованию и фильтрация по диапазону цены, а также сортировка по возрастанию цены
-    @Query(value = "select * from product where (lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') OR (lower(title) LIKE '%?1') and (price >= ?2 and price <= ?3) order by price",nativeQuery = true)
+    @Query(value = "select * from product where (lower(title) LIKE CONCAT('%', ?1, '%')) and (price >= ?2 and price <= ?3) order by price",nativeQuery = true)
     List<Product> findByTitleOrderByPriceAsc(String title, float ot, float Do);
 
-    // Поиск по наименованию и фильтрация по диапазону цены, а также сортировка по убыванию цены
-    @Query(value = "select * from product where (lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') OR (lower(title) LIKE '%?1') and (price >= ?2 and price <= ?3) order by price desc",nativeQuery = true)
+    @Query (value = "select * from product where (lower(title) LIKE CONCAT('%', ?1, '%')) and (price >=?2 and price <=?3) order by price desc ", nativeQuery = true)
     List<Product> findByTitleOrderByPriceDesc(String title, float ot, float Do);
 
-    // Поиск по наименованию и фильтрация по диапазону цены, сортировка по возрастанию цены,  а также фильтрация по категории
-    @Query(value = "select * from product where category_id = ?4 and(lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') OR (lower(title) LIKE '%?1') and (price >= ?2 and price <= ?3) order by price",nativeQuery = true)
+    @Query (value = "select * from product where category_id = ?4 and (lower(title) LIKE CONCAT('%', ?1, '%')) and (price >=?2 and price <=?3) order by price", nativeQuery = true)
     List<Product> findByTitleAndCategoryOrderByPriceAsc(String title, float ot, float Do, int category);
 
-    // Поиск по наименованию и фильтрация по диапазону цены, сортировка по убыванию цены,  а также фильтрация по категории
-    @Query(value = "select * from product where category_id = ?4 and(lower(title) LIKE %?1%) or (lower(title) LIKE '?1%') OR (lower(title) LIKE '%?1') and (price >= ?2 and price <= ?3) order by price desc",nativeQuery = true)
+    @Query (value = "select * from product where category_id = ?4 and (lower(title) LIKE CONCAT('%', ?1, '%')) and (price >=?2 and price <=?3) order by price desc", nativeQuery = true)
     List<Product> findByTitleAndCategoryOrderByPriceDesc(String title, float ot, float Do, int category);
+
+    @Query(value = "select * from product where lower(title) LIKE CONCAT('%', ?1, '%') order by CAST(price AS DECIMAL)", nativeQuery = true)
+    List<Product> findByTitleOrderByPriceAsc(String title);
+
+    @Query(value = "select * from product where lower(title) LIKE CONCAT('%', ?1, '%') order by CAST(price AS DECIMAL) desc", nativeQuery = true)
+    List<Product> findByTitleOrderByPriceDesc(String title);
+
+    @Query(value = "select * from product order by price", nativeQuery = true)
+    List<Product> findAllOrderByPriceAsc();
+
+    @Query(value = "select * from product order by price desc", nativeQuery = true)
+    List<Product> findAllOrderByPriceDesc();
+
+    @Query(value = "select * from product where lower(title) LIKE CONCAT('%', ?1, '%') and category_id = ?2", nativeQuery = true)
+    List<Product> findByTitleAndCategory(String title, int category);
+
+
+    @Query(value = "select * from product where lower(title) LIKE CONCAT('%', ?1, '%') and category_id = ?2 order by price", nativeQuery = true)
+    List<Product> findByTitleAndCategoryOrderByPriceAsc(String title, int category);
+
+
+    @Query(value = "select * from product where lower(title) LIKE CONCAT('%', ?1, '%') and category_id = ?2 order by price desc", nativeQuery = true)
+    List<Product> findByTitleAndCategoryOrderByPriceDesc(String title, int category);
+
+
+    @Query(value = "select * from product where category_id = ?1 order by price", nativeQuery = true)
+    List<Product> findByCategoryOrderByPriceAsc(int category);
+
+
+    @Query(value = "select * from product where category_id = ?1 order by price desc", nativeQuery = true)
+    List<Product> findByCategoryOrderByPriceDesc(int category);
+
+    @Query(value = "select * from product where category_id = ?4 and (lower(title) LIKE CONCAT('%', ?1, '%')) and (price >=?2 and price <=?3) order by price desc", nativeQuery = true)
+    List<Product> findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqualAndCategoryId(String title, Float ot, Float aDo, Integer category);
+
 }
 

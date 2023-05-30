@@ -1,0 +1,60 @@
+body {
+    font-size: 16px;
+    background-color: #f1f1f1;
+}
+h3 {
+    margin: 40px 0;
+    text-align: center;
+    font-size: 28px;
+}
+form {
+    margin: 0 auto;
+    width: 50%;
+    border: 3px solid #f1f1f1;
+    padding: 20px;
+    background-color: #eee;
+}
+label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+input[type="text"], textarea, select, input[type="number"], input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    font-size: 16px;
+    background-color: #fff;
+}
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+a {
+    color: #000;
+    font-size: 16px;
+}
+p {
+    font-size: 16px;
+}
+div[th:if] {
+    margin-top: 10px;
+}
+div[th:if][style] {
+              color: red;
+              font-size: 16px;
+          }
+div[th:if][style]:before {
+              content: "* ";
+          }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Информация о заказе</title>
+  <link th:href="@{/css/admin/orderInfo.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
 <form method="POST" th:action="@{/logout}">
@@ -16,20 +17,41 @@
 <br>
 <h3>Информация о заказе: </h3>
 <form th:method="post" th:action="@{/admin/order/{id}(id=${order.id})}" th:object="${order}">
-  <p th:text="'Номер заказа: ' + ${order.getOnumber()}"></p>
-  <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
-  <p th:text="'Состав заказа: ' + ${order.getProduct().getTitle()}"></p>
-  <p th:text="'Стоимость: ' + ${order.getPrice()}"></p>
-  <p th:text="'Логин покупателя: ' + ${order.getPerson().getLogin()}"></p>
-  <p th:text="'ID покупателя: ' + ${order.getPerson().getId()}"></p>
-  <p th:text="'Статус заказа: ' + ${order.getStatus()}"></p>
-  <label for="status">Изменить статус заказа: </label>
-  <select name="status" id="status">
-    <option th:each="orderStatus: ${status}" th:text="${orderStatus}" th:value="${orderStatus}" th:selected="${order.getStatus().equals(orderStatus)}"></option>
-  </select>
-  <input type="submit" value="Изменить статус">
-  <br>
-  <br>
+  <table>
+    <tr>
+      <th>Номер заказа:</th>
+      <td th:text="${order.getOnumber()}"></td>
+    </tr>
+    <tr>
+      <th>Дата заказа:</th>
+      <td th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></td>
+    </tr>
+    <tr>
+      <th>Состав заказа:</th>
+      <td th:text="${order.getProduct().getTitle()}"></td>
+    </tr>
+    <tr>
+      <th>Стоимость:</th>
+      <td th:text="${order.getPrice()}"></td>
+    </tr>
+    <tr>
+      <th>Логин покупателя:</th>
+      <td th:text="${order.getPerson().getLogin()}"></td>
+    </tr>
+    <tr>
+      <th>ID покупателя:</th>
+      <td th:text="${order.getPerson().getId()}"></td>
+    </tr>
+    <tr>
+      <th>Статус заказа:</th>
+      <td>
+        <select name="status" id="status">
+          <option th:each="orderStatus: ${status}" th:text="${orderStatus}" th:value="${orderStatus}" th:selected="${order.getStatus().equals(orderStatus)}"></option>
+        </select>
+        <input type="submit" value="Изменить статус">
+      </td>
+    </tr>
+  </table>
 </form>
 <!--<form method="post" th:action="@{/admin/order/{id}/delete}">-->
 <!--  <input type="hidden" name="orderId" th:value="${order.id}">-->

@@ -19,9 +19,7 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-    public Product getProductById(long id) {
-        return productRepository.findById((int) id).orElse(null);
-    }
+
 
     //Данный метод позволяет получить список всех товаров
     public List<Product> getAllProduct() {
@@ -53,5 +51,6 @@ public class ProductService {
     public void deleteProduct(int id) {
         productRepository.deleteById(id);
     }
+
 
 }

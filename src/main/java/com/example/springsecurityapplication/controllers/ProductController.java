@@ -15,7 +15,7 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-//    Эти методы нужно
+    //    Эти методы нужно
 //    было продублировать в сервисном слое, но этот момент тут опущен
     private final ProductRepository productRepository;
 

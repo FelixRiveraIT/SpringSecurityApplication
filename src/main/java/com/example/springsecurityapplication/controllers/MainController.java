@@ -88,7 +88,7 @@ public class MainController {
     }
 
     //Обработка формы поиска товара (с представления index,
-    @PostMapping("/person account/product/search")
+    @PostMapping("/person_account/product/search")
     public String productSearch(@RequestParam("search") String search,
                                 @RequestParam("ot") String ot,
                                 @RequestParam("do") String Do,
@@ -148,7 +148,7 @@ public class MainController {
         model.addAttribute("value_search",search);
         model.addAttribute("value_price_ot",ot);
         model.addAttribute("value_price_do",Do);
-        return "/product/product";
+        return "/user/index";
     }
 
     //Обрабатываем ссылку "добавить в корзину" из представления index
@@ -261,4 +261,3 @@ public class MainController {
         return "/user/orders";
     }
 }
-

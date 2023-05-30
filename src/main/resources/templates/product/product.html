@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Список товаров</title>
+    <link th:href="@{/css/product/product.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
-<a th:href="@{/authentication}">Авторизоваться или зарегистрироваться</a>
+<a class="log" th:href="@{/authentication}">Авторизоваться или зарегистрироваться</a>
 <h2>Главная страница</h2>
 <h3>Сортировка, поиск, фильтрация</h3>
 <form th:method="POST" th:action="@{/product/search}">
@@ -46,7 +47,7 @@
 <div th:each="product: ${search_product}">
     <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
     <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    <a class="btn" th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
     <p th:text="'Цена: ' + ${product.getPrice()}"></p>
     <hr>
 </div>
@@ -58,7 +59,6 @@
     <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
     <p th:text="'Цена: ' + ${product.getPrice()}"></p>
     <hr>
-
 </div>
 </body>
 </html>

@@ -32,8 +32,8 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 //Указываем, что указанные страницы доступны всем пользователям. Добавляем в этот список также таблицы стилей, JS, папки с картинками и тд (т.к. в момент, когда у пользователя не будет роли - ему все это будет недоступно)
                 .requestMatchers("/authentication", "/registration", "/error", "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "product", "/product/info/{id}", "/product/search").permitAll()
-                // указываем, что все остальные страницы доступны user и admin
-                .anyRequest().hasAnyRole("USER", "ADMIN")
+                // указываем, что все остальные страницы доступны user и admin и seller
+                .anyRequest().hasAnyRole("USER", "ADMIN", "SELLER")
 
                 // указываем, что для всех остальных страниц необходимо вызывать метод authenticated(), который открывает форму аутентификации. использовали до внедрения ролей
 //                .anyRequest().authenticated() использовали до внедрения ролей

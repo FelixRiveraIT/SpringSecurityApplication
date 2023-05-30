@@ -3,32 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Все товары</title>
+  <link th:href="@{/css/admin/infoProduct.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
-<h3>Просмотр всех товаров</h3>
-<hr>
-
 <form method="POST" th:action="@{/logout}">
   <button type="submit">Выйти из личного кабинета администратора</button>
 </form>
 <hr>
-<a href="/admin">Назад в личный кабинет администратора</a>
-<br>
-<a href="/admin/product/add">Добавить новый товар</a>
+<h3>Просмотр всех товаров</h3>
+
+<hr>
+<div style="text-align: left; margin-left: 60px;">
+  <a href="/admin">Назад в личный кабинет администратора</a>
+  <br>
+  <a href="/admin/product/add">Добавить новый товар</a>
+</div>
 <hr>
 
 <div th:each="product : ${products}">
-  <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
-  <p th:text="'Категория: ' + ${product.getCategory().getTitle()}"></p>
-  <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="100px">
-  <br>
-  <a th:href="@{/product/info/{id}(id=${product.getId()})}">Подробная информация о товаре</a>
-  <br>
-  <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать товар</a>
-  <br>
-  <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить товар</a>
-  <hr>
-  <br>
+  <div>
+    <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+    <p th:text="'Категория: ' + ${product.getCategory().getTitle()}"></p>
+    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="100px">
+    <br>
+    <a th:href="@{/product/info/{id}(id=${product.getId()})}">Подробная информация о товаре</a>
+    <br>
+    <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">Редактировать товар</a>
+    <br>
+    <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">Удалить товар</a>
+    <hr>
+  </div>
 </div>
 </body>
 </html>

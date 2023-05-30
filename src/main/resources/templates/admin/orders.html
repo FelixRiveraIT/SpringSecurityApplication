@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Список всех заказов</title>
+  <link th:href="@{/css/admin/orders.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
 <form method="POST" th:action="@{/logout}">
   <button type="submit">Выйти из личного кабинета администратора</button>
 </form>
 <br>
-<a href="/admin">Назад в личный кабинет администратора</a>
+<a class="back" href="/admin">Назад в личный кабинет администратора</a>
 <hr>
 <br>
 
